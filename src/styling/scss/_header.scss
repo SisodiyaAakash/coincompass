@@ -1,0 +1,98 @@
+body {
+  header.header {
+    padding: 10px 0;
+    box-shadow: $box-shadow;
+
+    .nav-wrapper {
+      @include flex-center;
+      justify-content: space-between;
+
+      .logo-area {
+        display: flex;
+      }
+      .navigation-area,
+      .profile-area {
+        width: calc(50% - 50px);
+        display: flex;
+      }
+
+      .navigation-area {
+        justify-content: flex-start;
+
+        ul.nav-list {
+          @include flex-center-wrap;
+          column-gap: 25px;
+          row-gap: 10px;
+
+          li {
+            font-size: 16px;
+            line-height: 1;
+            color: rgba($black, 0.65);
+            padding-bottom: 6px;
+            position: relative;
+
+            &::before {
+              content: "";
+              display: block;
+              position: absolute;
+              bottom: 0;
+              left: 0;
+
+              width: 0;
+              height: 2px;
+              background-color: rgba($black, 0);
+              transition: $transition;
+            }
+
+            &.active,
+            &:hover {
+              color: rgba($black, 1);
+              transition: $transition;
+
+              &::before {
+                width: 100%;
+                right: 0;
+                transition: $transition-slow;
+                right: 0;
+                background-color: rgba($black, 1);
+              }
+            }
+
+            a {
+              font-size: inherit;
+              line-height: inherit;
+              color: inherit;
+            }
+          }
+        }
+      }
+
+      .logo-area {
+        justify-content: center;
+
+        a.logo-link {
+          @include flex-center;
+          justify-content: center;
+
+          img.logo {
+            width: 65px;
+          }
+        }
+      }
+
+      .profile-area {
+        justify-content: flex-end;
+
+        .profile-inner {
+          width: 35px;
+          height: 35px;
+          border-radius: 50%;
+          background-color: $dark-blue;
+          @include flex-center;
+          justify-content: center;
+          color: $white;
+        }
+      }
+    }
+  }
+}

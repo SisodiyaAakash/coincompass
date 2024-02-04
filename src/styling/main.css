@@ -1,0 +1,466 @@
+/* Colours */
+/* Font Weight */
+/* Utilities */
+/* Starter Theme Variables */
+/* Theme colors */
+/* Fonts */
+/* Common Utilities */
+/* Flex */
+/* Text ellipse */
+/* Fonts */
+/* Primary Fonts */
+@font-face {
+  font-family: "Questrial";
+  src: url("../assets/fonts/Questrial-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* Secondary Fonts */
+@font-face {
+  font-family: "Inter";
+  src: url("../assets/fonts/Inter-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("../assets/fonts/Inter-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("../assets/fonts/Inter-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+/* Typography Styling */
+body {
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body #root .coin-compass-wrap .overview-dashboard .sub-title,
+body h6 {
+  font-family: "Questrial";
+  font-weight: 400;
+}
+body h1 *,
+body h2 *,
+body h3 *,
+body h4 *,
+body h5 *,
+body #root .coin-compass-wrap .overview-dashboard .sub-title *,
+body h6 * {
+  font-family: inherit;
+  font-weight: inherit;
+}
+body p,
+body ul li,
+body input,
+body textarea,
+body select option {
+  font-family: "Inter";
+  font-weight: 400;
+}
+body button {
+  font-family: "Inter";
+  text-decoration: none;
+  font-weight: 400;
+}
+body button * {
+  font-family: inherit;
+  font-weight: inherit;
+}
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body #root .coin-compass-wrap .overview-dashboard .sub-title,
+body h6,
+body p {
+  padding: 0;
+}
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body #root .coin-compass-wrap .overview-dashboard .sub-title,
+body h6,
+body a,
+body p,
+body button {
+  margin: 0;
+  font-style: normal;
+}
+body a {
+  text-decoration: none;
+}
+body a:hover {
+  text-decoration: none;
+}
+body h1 {
+  font-size: 56px;
+  line-height: 63px;
+  letter-spacing: 0.56px;
+}
+@media screen and (max-width: 767px) {
+  body h1 {
+    font-size: 48px;
+    line-height: 54px;
+    letter-spacing: 0.48px;
+  }
+}
+body h2 {
+  font-size: 48px;
+  line-height: 54px;
+  letter-spacing: 0.48px;
+}
+@media screen and (max-width: 767px) {
+  body h2 {
+    font-size: 35px;
+    line-height: 40px;
+    letter-spacing: 0.35px;
+  }
+}
+body h3 {
+  font-size: 35px;
+  line-height: 40px;
+  letter-spacing: 0.35px;
+}
+@media screen and (max-width: 767px) {
+  body h3 {
+    font-size: 32px;
+    line-height: 36px;
+    letter-spacing: 0.32px;
+  }
+}
+body h4 {
+  font-size: 32px;
+  line-height: 36px;
+  letter-spacing: 0.32px;
+}
+@media screen and (max-width: 767px) {
+  body h4 {
+    font-size: 24px;
+    line-height: 27px;
+    letter-spacing: 0.24px;
+  }
+}
+body h5, body #root .coin-compass-wrap .overview-dashboard .sub-title {
+  font-size: 24px;
+  line-height: 27px;
+  letter-spacing: 0.24px;
+}
+body p {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+@media screen and (max-width: 767px) {
+  body p {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+body li {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+}
+@media screen and (max-width: 767px) {
+  body li {
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
+body input,
+body textarea,
+body select option {
+  font-size: 16px;
+  line-height: 18px;
+  font-family: "Inter";
+  outline: none;
+}
+@media screen and (max-width: 543px) {
+  body input,
+  body textarea,
+  body select option {
+    font-size: 14px;
+    line-height: 16px;
+  }
+}
+body button {
+  font-size: 20px;
+  line-height: 1;
+  text-align: center;
+  font-weight: 700;
+  font-family: "Inter";
+}
+
+html, * {
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+}
+
+body {
+  scroll-behavior: smooth;
+  padding: 0;
+  margin: 0;
+}
+body ol,
+body ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+body ol::before, body ol::after,
+body ul::before,
+body ul::after {
+  display: none;
+}
+body img {
+  max-width: 100%;
+}
+body .container {
+  max-width: 1199px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media screen and (max-width: 1199px) {
+  body .container {
+    max-width: 901px;
+  }
+}
+@media screen and (max-width: 991px) {
+  body .container {
+    max-width: 707px;
+  }
+}
+@media screen and (max-width: 767px) {
+  body .container {
+    max-width: 503px;
+  }
+}
+@media screen and (max-width: 543px) {
+  body .container {
+    max-width: 100%;
+  }
+}
+
+/* Custom Scrollbar */
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+*::-webkit-scrollbar-track {
+  background: #F5F5F5;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(67, 51, 255, 0.6);
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(67, 51, 255, 0.85);
+}
+
+/* Font weights */
+body .extra-light {
+  font-weight: 200;
+}
+body .light {
+  font-weight: 300;
+}
+body .regular {
+  font-weight: 400;
+}
+body .medium {
+  font-weight: 500;
+}
+body .semi-bold {
+  font-weight: 600;
+}
+body .bold {
+  font-weight: 700;
+}
+
+body header.header {
+  padding: 10px 0;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+body header.header .nav-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+body header.header .nav-wrapper .logo-area {
+  display: flex;
+}
+body header.header .nav-wrapper .navigation-area,
+body header.header .nav-wrapper .profile-area {
+  width: calc(50% - 50px);
+  display: flex;
+}
+body header.header .nav-wrapper .navigation-area {
+  justify-content: flex-start;
+}
+body header.header .nav-wrapper .navigation-area ul.nav-list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  -moz-column-gap: 25px;
+       column-gap: 25px;
+  row-gap: 10px;
+}
+body header.header .nav-wrapper .navigation-area ul.nav-list li {
+  font-size: 16px;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.65);
+  padding-bottom: 6px;
+  position: relative;
+}
+body header.header .nav-wrapper .navigation-area ul.nav-list li::before {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: rgba(0, 0, 0, 0);
+  transition: 550ms all ease;
+}
+body header.header .nav-wrapper .navigation-area ul.nav-list li.active, body header.header .nav-wrapper .navigation-area ul.nav-list li:hover {
+  color: black;
+  transition: 550ms all ease;
+}
+body header.header .nav-wrapper .navigation-area ul.nav-list li.active::before, body header.header .nav-wrapper .navigation-area ul.nav-list li:hover::before {
+  width: 100%;
+  right: 0;
+  transition: 750ms all ease;
+  right: 0;
+  background-color: black;
+}
+body header.header .nav-wrapper .navigation-area ul.nav-list li a {
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+body header.header .nav-wrapper .logo-area {
+  justify-content: center;
+}
+body header.header .nav-wrapper .logo-area a.logo-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body header.header .nav-wrapper .logo-area a.logo-link img.logo {
+  width: 65px;
+}
+body header.header .nav-wrapper .profile-area {
+  justify-content: flex-end;
+}
+body header.header .nav-wrapper .profile-area .profile-inner {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #1200da;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+}
+
+body #root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+body #root .coin-compass-wrap {
+  flex-grow: 1;
+  padding: 30px 0;
+}
+body #root .coin-compass-wrap .overview-dashboard {
+  width: 700px;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  background-image: linear-gradient(135deg, #19AEE1 0%, #D069F3 50%, #FD956E 100%);
+  border-radius: 12px;
+  padding: 40px 50px;
+  text-align: center;
+  color: #FFFFFF;
+}
+@media screen and (max-width: 767px) {
+  body #root .coin-compass-wrap .overview-dashboard {
+    padding: 30px 20px;
+  }
+}
+body #root .coin-compass-wrap .overview-dashboard .sub-title {
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+body #root .coin-compass-wrap .overview-dashboard .net-balance {
+  margin-bottom: 30px;
+}
+body #root .coin-compass-wrap .overview-dashboard .transaction-figures {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+body #root .coin-compass-wrap .overview-dashboard .transaction-figures .figure-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+}
+body #root .coin-compass-wrap .overview-dashboard .transaction-figures .figure-wrapper .arrow-wrap {
+  width: 50px;
+  height: 50px;
+  padding: 8px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body #root .coin-compass-wrap .overview-dashboard .transaction-figures .figure-wrapper .arrow-wrap img {
+  width: auto;
+  height: 100%;
+}
+
+body footer.footer {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  margin-top: auto;
+  padding: 10px 0;
+}
+body footer.footer .footer-inner-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+  row-gap: 15px;
+}
+body footer.footer .footer-inner-wrap .social-icon {
+  display: flex;
+  align-items: center;
+}
+body footer.footer .footer-inner-wrap .social-icon img {
+  width: auto;
+  height: 20px;
+}/*# sourceMappingURL=main.css.map */

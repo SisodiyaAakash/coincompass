@@ -1,0 +1,66 @@
+body {
+  #root {
+    min-height: 100vh;
+    @include flex-column;
+
+    .coin-compass-wrap {
+      flex-grow: 1;
+      padding: 30px 0;
+
+      .overview-dashboard {
+        width: 700px;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        background-image: $primary-gradient;
+        border-radius: $radius;
+        padding: 40px 50px;
+        text-align: center;
+        color: $white;
+
+        @media screen and (max-width: 767px) {
+          padding: 30px 20px;
+        }
+
+        .sub-title {
+          @extend h5;
+          font-weight: $medium;
+          margin-bottom: 12px;
+        }
+
+        .net-balance {
+          margin-bottom: 30px;
+        }
+
+        .transaction-figures {
+          @include flex-center;
+          justify-content: space-between;
+          gap: 15px;
+
+          .figure-wrapper {
+            @include flex-center;
+            gap: 10px;
+            text-align: left;
+
+            .arrow-wrap {
+              width: 50px;
+              height: 50px;
+              padding: 8px;
+
+              border-radius: 50%;
+              background-color: rgba($white, 0.5);
+              
+              @include flex-center;
+              justify-content: center;
+
+              img {
+                width: auto;
+                height: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
