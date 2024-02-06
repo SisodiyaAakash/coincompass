@@ -112,5 +112,9 @@ body {
         }
       }
     }
+
+    .component-wrap {
+      @include safearea;
+    }
   }
 }

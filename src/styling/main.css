@@ -496,6 +496,12 @@ body #root .coin-compass-wrap .categorized-transactions-wrap .transaction-list .
   border-radius: 50%;
   padding: 5px;
 }
+body #root .component-wrap {
+  width: 700px;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 body footer.footer {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;

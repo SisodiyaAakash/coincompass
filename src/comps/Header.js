@@ -1,30 +1,34 @@
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import CoinCompassIcon from "../assets/media/coincompass.svg";
 
 const Header = () => {
+   const location = useLocation(); // Get the current location
+
    return (
       <header className="header">
          <nav className="nav-wrapper container">
             <div className="navigation-area">
                <ul className="nav-list">
-                  <li className="active">
-                     <a href="#">Dashboard</a>
+                  <li className={location.pathname === "/" ? "active" : ""}>
+                     <Link to="/">Dashboard</Link>
                   </li>
-                  <li className="">
-                     <a href="#">Transactions</a>
+                  <li className={location.pathname === "/transactions" ? "active" : ""}>
+                     <Link to="/transactions">Transactions</Link>
                   </li>
-                  <li className="">
-                     <a href="#">Categories</a>
+                  <li className={location.pathname === "/categories" ? "active" : ""}>
+                     <Link to="/categories">Categories</Link>
                   </li>
-                  <li className="">
-                     <a href="#">Goals</a>
+                  <li className={location.pathname === "/goals" ? "active" : ""}>
+                     <Link to="/goals">Goals</Link>
                   </li>
                </ul>
             </div>
 
             <div className="logo-area">
-               <a className="logo-link" href="#">
+               <Link className="logo-link" to="/">
                   <img src={CoinCompassIcon} className="logo" />
-               </a>
+               </Link>
             </div>
 
             <div className="profile-area">
