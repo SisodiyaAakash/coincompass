@@ -7,6 +7,7 @@
 /* Common Utilities */
 /* Flex */
 /* Text ellipse */
+/* Layout Specific */
 /* Fonts */
 /* Primary Fonts */
 @font-face {
@@ -441,6 +442,59 @@ body #root .coin-compass-wrap .overview-dashboard .transaction-figures .figure-w
 body #root .coin-compass-wrap .overview-dashboard .transaction-figures .figure-wrapper .arrow-wrap img {
   width: auto;
   height: 100%;
+}
+body #root .coin-compass-wrap .categorized-transactions-wrap {
+  width: 700px;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 40px 0;
+}
+body #root .coin-compass-wrap .categorized-transactions-wrap .heading-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+body #root .coin-compass-wrap .categorized-transactions-wrap .heading-section .heading {
+  color: #111111;
+}
+body #root .coin-compass-wrap .categorized-transactions-wrap .heading-section .redirect-btn {
+  color: rgba(17, 17, 17, 0.6);
+}
+body #root .coin-compass-wrap .categorized-transactions-wrap .transaction-list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+}
+body #root .coin-compass-wrap .categorized-transactions-wrap .transaction-list .transaction-list-itm {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 12px;
+  padding: 20px 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+@media screen and (max-width: 767px) {
+  body #root .coin-compass-wrap .categorized-transactions-wrap .transaction-list .transaction-list-itm {
+    padding: 15px 20px;
+  }
+}
+body #root .coin-compass-wrap .categorized-transactions-wrap .transaction-list .transaction-list-itm .content-section {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  -moz-column-gap: 15px;
+       column-gap: 15px;
+}
+body #root .coin-compass-wrap .categorized-transactions-wrap .transaction-list .transaction-list-itm .content-section .icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  padding: 5px;
 }
 
 body footer.footer {

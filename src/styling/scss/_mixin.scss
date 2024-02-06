@@ -54,13 +54,12 @@
   justify-content: center;
 }
 
-
 // Side margin auto
 @mixin auto-margin-side {
   margin-left: auto;
   margin-right: auto;
 }
-@mixin auto-margin-side-width ($width) {
+@mixin auto-margin-side-width($width) {
   width: $width;
   margin-left: auto;
   margin-right: auto;
@@ -85,4 +84,12 @@
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+/* Layout Specific */
+@mixin safearea {
+  width: 700px;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
