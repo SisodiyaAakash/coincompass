@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import IncomeArrow from '../assets/media/income-arrow.svg';
 import ExpenseArrow from '../assets/media/expense-arrow.svg';
 
@@ -88,7 +89,7 @@ const Dashboard = () => {
         <div className='categorized-transactions-wrap'>
           <div className='heading-section'>
             <h5 className='heading'>Transactions</h5>
-            <a className='redirect-btn view-all-btn' href='#view-all'>View All</a>
+            <Link to="/transactions">View All</Link>
           </div>
           <div className='transaction-list'>
             {categoryList.map((item, index) => (
