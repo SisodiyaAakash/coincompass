@@ -111,6 +111,14 @@ body {
           }
         }
       }
+
+      .transaction-popup-wrap {
+        @include fixed-screen(9999);
+        @include flex-center;
+        justify-content: center;
+        background: rgba($white, 0.8);
+        backdrop-filter: blur(10px);
+      }
     }
 
     .component-wrap {

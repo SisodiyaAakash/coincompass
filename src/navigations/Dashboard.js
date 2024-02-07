@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import IncomeArrow from '../assets/media/income-arrow.svg';
 import ExpenseArrow from '../assets/media/expense-arrow.svg';
 
 const Dashboard = () => {
-  const categoryList = [
+  const [newTransaction, setNewTransaction] = useState({
+    category: '',
+    amount: 0,
+    type: 'expense'
+  });
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const [categoryList, setCategoryList] = useState([
     {
       name: "Food",
       icon: require('../assets/media/transaction-category-icons/food-category.svg').default,
@@ -47,7 +54,7 @@ const Dashboard = () => {
       transaction: 1025900,
       color: '#FD956E'
     },
-  ];
+  ]);
 
   // Calculate total income and expense
   const totalIncome = categoryList.filter(item => item.transaction > 0)
@@ -55,6 +62,30 @@ const Dashboard = () => {
   const totalExpense = categoryList.filter(item => item.transaction < 0)
     .reduce((acc, item) => acc + item.transaction, 0);
   const totalBalance = totalIncome + totalExpense;
+
+  const handleAddTransaction = () => {
+    const updatedCategoryList = [...categoryList];
+    const index = updatedCategoryList.findIndex(cat => cat.name === newTransaction.category);
+    if (index !== -1) {
+      updatedCategoryList[index].transaction += (newTransaction.type === 'income' ?
+        newTransaction.amount : -newTransaction.amount);
+      setCategoryList(updatedCategoryList);
+      setNewTransaction({ ...newTransaction, amount: 0 });
+      setIsPopupOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isPopupOpen) {
+      document.body.classList.add('overflow-hidden');
+    } else {
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    return () => {
+      document.body.classList.remove('overflow-hidden');
+    };
+  }, [isPopupOpen]);
 
   return (
     <div className='coin-compass-wrap'>
@@ -84,6 +115,9 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
+
+          {/* Plus button to open popup */}
+          <button onClick={() => setIsPopupOpen(true)}>+</button>
         </div>
 
         <div className='categorized-transactions-wrap'>
@@ -108,6 +142,39 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+
+
+      {/* Popup for the Transaction add form */}
+      {isPopupOpen && (
+        <div className="transaction-popup-wrap">
+          <div className="popup-content">
+            <h3>Add Transaction</h3>
+            <select
+              value={newTransaction.category}
+              onChange={(e) => setNewTransaction({ ...newTransaction, category: e.target.value })}
+            >
+              <option value="">Select Category</option>
+              {categoryList.map((category, index) => (
+                <option key={index} value={category.name}>{category.name}</option>
+              ))}
+            </select>
+            <input
+              type="number"
+              value={newTransaction.amount}
+              onChange={(e) => setNewTransaction({ ...newTransaction, amount: parseFloat(e.target.value) })}
+            />
+            <select
+              value={newTransaction.type}
+              onChange={(e) => setNewTransaction({ ...newTransaction, type: e.target.value })}
+            >
+              <option value="expense">Expense</option>
+              <option value="income">Income</option>
+            </select>
+            <button onClick={handleAddTransaction}>Add Transaction</button>
+            <button onClick={() => setIsPopupOpen(false)}>Cancel</button> {/* Cancel button to close popup */}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
