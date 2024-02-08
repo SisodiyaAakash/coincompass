@@ -87,6 +87,11 @@
 }
 
 /* Layout Specific */
+@mixin res-width($width) {
+  width: $width;
+  max-width: 100%;
+}
+
 @mixin safearea {
   width: 700px;
   max-width: 100%;

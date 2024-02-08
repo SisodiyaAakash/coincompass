@@ -53,14 +53,14 @@ body {
   }
 
   &::-webkit-scrollbar-track {
-    background: $todo-secondary;
+    background: $theme-secondary;
   }
 
   &::-webkit-scrollbar-thumb {
-    background: rgba($todo-primary, 0.6);
+    background: rgba($theme-primary, 0.6);
 
     &:hover {
-      background: rgba($todo-primary, 0.85);
+      background: rgba($theme-primary, 0.85);
     }
   }
 }

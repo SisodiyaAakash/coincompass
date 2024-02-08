@@ -5,7 +5,8 @@ $grey: #F5F5F5;
 $dark-grey: #111111;
 $blue: #4333FF;
 $dark-blue: #1200da;
-$red: #E94848;
+$red: #E53935;
+$dark-red: #D32F2F;
 $green: #27AE60;
 $yellow: #c1981b;
 
@@ -32,11 +33,11 @@ $radius-high: 20px;
 
 /* Starter Theme Variables */
 /* Theme colors */
-$todo-primary: $blue; 
-$todo-primary-dark: $dark-blue; 
-$todo-secondary: $grey;
-$todo-secondary-dark: $dark-grey;
+$theme-primary: $blue; 
+$theme-primary-dark: $dark-blue; 
+$theme-secondary: $grey;
+$theme-secondary-dark: $dark-grey;
 
 /* Fonts */
-$todo-primary-fonts: 'Questrial';
-$todo-secondary-fonts: 'Inter';
+$theme-primary-fonts: 'Questrial';
+$theme-secondary-fonts: 'Inter';

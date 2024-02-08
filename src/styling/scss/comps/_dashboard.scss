@@ -1,0 +1,279 @@
+body {
+  .dashboard-wrap {
+    .overview-dashboard {
+      @include safearea;
+      background-image: $primary-gradient;
+      border-radius: $radius;
+      padding: 40px 50px;
+      text-align: center;
+      color: $white;
+
+      @media screen and (max-width: 767px) {
+        padding: 30px 20px;
+      }
+
+      .sub-title {
+        @extend h5;
+        font-weight: $medium;
+        margin-bottom: 12px;
+      }
+
+      .net-balance {
+        margin-bottom: 40px;
+
+        @media screen and (max-width: 767px) {
+          margin-bottom: 30px;
+        }
+      }
+
+      .transaction-figures {
+        @include flex-center-wrap;
+        justify-content: space-between;
+        gap: 25px;
+        margin-bottom: 40px;
+
+        @media screen and (max-width: 767px) {
+          margin-bottom: 30px;
+        }
+
+        .figure-wrapper {
+          @include flex-center;
+          gap: 10px;
+          text-align: left;
+
+          .arrow-wrap {
+            width: 50px;
+            height: 50px;
+            padding: 8px;
+
+            border-radius: 50%;
+            background-color: rgba($white, 0.5);
+
+            @include flex-center;
+            justify-content: center;
+
+            img {
+              width: auto;
+              height: 100%;
+            }
+          }
+        }
+      }
+
+      button.add-transaction {
+        border: 0;
+        border-radius: 50%;
+        background-color: $white;
+        font-size: 30px;
+        line-height: 1;
+        width: 40px;
+        height: 40px;
+        padding: 5px;
+        cursor: pointer;
+        font-weight: $medium;
+        text-align: center;
+
+        @include flex-center;
+        justify-content: center;
+
+        @include auto-margin-side;
+
+        @media screen and (max-width: 767px) {
+          width: 32px;
+          height: 32px;
+          font-size: 20px;
+        }
+      }
+    }
+
+    .categorized-transactions-wrap {
+      @include safearea;
+      padding: 40px 0;
+
+      .heading-section {
+        @include flex-center;
+        justify-content: space-between;
+        margin-bottom: 30px;
+
+        .heading {
+          color: $dark-grey;
+        }
+        .redirect-btn {
+          color: rgba($dark-grey, 0.6);
+        }
+      }
+
+      .transaction-list {
+        @include flex-column;
+        row-gap: 15px;
+
+        .transaction-list-itm {
+          max-width: 100%;
+          box-shadow: $box-shadow;
+          border-radius: $radius;
+          padding: 20px 25px;
+
+          @include flex-center-wrap;
+          justify-content: space-between;
+          gap: 25px;
+
+          @media screen and (max-width: 767px) {
+            padding: 15px 20px;
+          }
+
+          .content-section {
+            @include flex-center;
+            justify-content: flex-start;
+
+            column-gap: 15px;
+
+            @media screen and (max-width: 767px) {
+              column-gap: 10px;
+            }
+
+            .icon-wrap {
+              @include flex-center;
+              justify-content: center;
+
+              width: 45px;
+              height: 45px;
+              border-radius: 50%;
+              padding: 5px;
+            }
+
+            h5 {
+              color: $dark-grey;
+            }
+          }
+
+          .number-section {
+            margin-left: auto;
+
+            h5 {
+              color: rgba($dark-grey, 0.6);
+            }
+          }
+        }
+      }
+    }
+
+    .transaction-popup-wrap {
+      @include fixed-screen(9999);
+      @include flex-center;
+      justify-content: center;
+      background: rgba($white, 0.85);
+      backdrop-filter: blur(10px);
+
+      padding: 20px;
+
+      .popup-content {
+        max-width: 100%;
+
+        h3.heading {
+          text-align: center;
+          margin-bottom: 20px;
+          color: $theme-primary-dark;
+
+          @media screen and (max-width: 767px) {
+            margin-bottom: 15px;
+          }
+        }
+
+        .transaction-form {
+          @include res-width(500px);
+          @include flex-column;
+          row-gap: 20px;
+
+          .form-body {
+            @include flex-column;
+            row-gap: 8px;
+          }
+
+          .form-footer {
+            @include flex-center-wrap;
+            gap: 10px;
+            justify-content: center;
+
+            button {
+              border-width: 0;
+              transition: transform 850ms;
+
+              @keyframes gradientTransition {
+                0% {
+                  background: linear-gradient(
+                    135deg,
+                    #19aee1 0%,
+                    #d069f3 50%,
+                    #fd956e 100%
+                  );
+                }
+                20% {
+                  background: linear-gradient(
+                    135deg,
+                    #19aee1 0%,
+                    #d069f3 50%,
+                    #fd956e 100%
+                  );
+                }
+                40% {
+                  background: linear-gradient(
+                    135deg,
+                    #fd956e 0%,
+                    #d069f3 50%,
+                    #19aee1 100%
+                  );
+                }
+                60% {
+                  background: linear-gradient(
+                    135deg,
+                    #d069f3 0%,
+                    #19aee1 50%,
+                    #fd956e 100%
+                  );
+                }
+                80% {
+                  background: linear-gradient(
+                    135deg,
+                    #19aee1 0%,
+                    #d069f3 50%,
+                    #fd956e 100%
+                  );
+                }
+                100% {
+                  background: linear-gradient(
+                    135deg,
+                    #19aee1 0%,
+                    #d069f3 50%,
+                    #fd956e 100%
+                  );
+                }
+              }
+
+              &.add-btn {
+                background-image: $primary-gradient;
+                color: $white;
+
+                &:hover {
+                  animation: gradientTransition 850ms infinite;
+                  transform: scale(1.05);
+                }
+              }
+              &.cancel-btn {
+                background-color: $red;
+                color: $white;
+                transition: background-color 0.3s, transform 0.3s;
+                
+                &:hover {
+                  background-color: $dark-red;
+                  transform: translateY(
+                    -2px
+                  );
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

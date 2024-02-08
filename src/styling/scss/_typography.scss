@@ -1,7 +1,7 @@
 /* Fonts */
 /* Primary Fonts */
 @font-face {
-  font-family: $todo-primary-fonts;
+  font-family: $theme-primary-fonts;
   src: url("../assets/fonts/Questrial-Regular.woff2") format("woff2");
   font-weight: $regular;
   font-style: normal;
@@ -10,21 +10,21 @@
 
 /* Secondary Fonts */
 @font-face {
-  font-family: $todo-secondary-fonts;
+  font-family: $theme-secondary-fonts;
   src: url("../assets/fonts/Inter-Regular.woff2") format("woff2");
   font-weight: $regular;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: $todo-secondary-fonts;
+  font-family: $theme-secondary-fonts;
   src: url("../assets/fonts/Inter-Medium.woff2") format("woff2");
   font-weight: $medium;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: $todo-secondary-fonts;
+  font-family: $theme-secondary-fonts;
   src: url("../assets/fonts/Inter-SemiBold.woff2") format("woff2");
   font-weight: $semi-bold;
   font-style: normal;
@@ -33,7 +33,7 @@
 
 /* Typography Styling */
 body {
-  font-family: $todo-secondary-fonts;
+  font-family: $theme-secondary-fonts;
   font-weight: $regular;
 
   font-size: 16px;
@@ -45,7 +45,7 @@ body {
   h4,
   h5,
   h6 {
-    font-family: $todo-primary-fonts;
+    font-family: $theme-primary-fonts;
     font-weight: $regular;
 
     * {
@@ -59,12 +59,12 @@ body {
   input,
   textarea,
   select option {
-    font-family: $todo-secondary-fonts;
+    font-family: $theme-secondary-fonts;
     font-weight: $regular;
   }
 
   button {
-    font-family: $todo-secondary-fonts;
+    font-family: $theme-secondary-fonts;
     text-decoration: none;
     font-weight: $regular;
 
@@ -159,7 +159,9 @@ body {
     letter-spacing: 0.24px;
 
     @media screen and (max-width: 767px) {
-      // typography value for the heading 5 in small screen
+      font-size: 20px;
+      line-height: 22px;
+      letter-spacing: 0.18px;
     }
   }
 
@@ -196,23 +198,27 @@ body {
 
   input,
   textarea,
-  select option {
-    font-size: 16px;
-    line-height: 18px;
-    font-family: $todo-secondary-fonts;
+  select {
+    font-size: 18px;
+    line-height: 16px;
+    font-family: $theme-secondary-fonts;
     outline: none;
 
     @media screen and (max-width: 543px) {
-      font-size: 14px;
-      line-height: 16px;
+      font-size: 16px;
+      line-height: 14px;
     }
   }
 
   button {
-    font-size: 20px;
+    font-size: 18px;
     line-height: 1;
     text-align: center;
     font-weight: $bold;
-    font-family: $todo-secondary-fonts;
+    font-family: $theme-secondary-fonts;
+
+    @media screen and (max-width: 767px) {
+      font-size: 16px;
+    }
   }
 }

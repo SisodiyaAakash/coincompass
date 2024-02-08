@@ -88,7 +88,7 @@ const Dashboard = () => {
   }, [isPopupOpen]);
 
   return (
-    <div className='coin-compass-wrap'>
+    <div className='coin-compass-wrap dashboard-wrap'>
       <div className='container'>
         <div className='overview-dashboard'>
           <p className='sub-title'>Total Balance</p>
@@ -117,7 +117,7 @@ const Dashboard = () => {
           </div>
 
           {/* Plus button to open popup */}
-          <button onClick={() => setIsPopupOpen(true)}>+</button>
+          <button className='add-transaction' onClick={() => setIsPopupOpen(true)}>+</button>
         </div>
 
         <div className='categorized-transactions-wrap'>
@@ -148,30 +148,38 @@ const Dashboard = () => {
       {isPopupOpen && (
         <div className="transaction-popup-wrap">
           <div className="popup-content">
-            <h3>Add Transaction</h3>
-            <select
-              value={newTransaction.category}
-              onChange={(e) => setNewTransaction({ ...newTransaction, category: e.target.value })}
-            >
-              <option value="">Select Category</option>
-              {categoryList.map((category, index) => (
-                <option key={index} value={category.name}>{category.name}</option>
-              ))}
-            </select>
-            <input
-              type="number"
-              value={newTransaction.amount}
-              onChange={(e) => setNewTransaction({ ...newTransaction, amount: parseFloat(e.target.value) })}
-            />
-            <select
-              value={newTransaction.type}
-              onChange={(e) => setNewTransaction({ ...newTransaction, type: e.target.value })}
-            >
-              <option value="expense">Expense</option>
-              <option value="income">Income</option>
-            </select>
-            <button onClick={handleAddTransaction}>Add Transaction</button>
-            <button onClick={() => setIsPopupOpen(false)}>Cancel</button> {/* Cancel button to close popup */}
+            <h3 className='heading'>Add Transaction</h3>
+
+            <form className='transaction-form'>
+              <div className='form-body'>
+                <select
+                  value={newTransaction.category}
+                  onChange={(e) => setNewTransaction({ ...newTransaction, category: e.target.value })}
+                >
+                  <option value="">Select Category</option>
+                  {categoryList.map((category, index) => (
+                    <option key={index} value={category.name}>{category.name}</option>
+                  ))}
+                </select>
+                <input
+                  type="number"
+                  value={newTransaction.amount}
+                  onChange={(e) => setNewTransaction({ ...newTransaction, amount: parseFloat(e.target.value) })}
+                />
+                <select
+                  value={newTransaction.type}
+                  onChange={(e) => setNewTransaction({ ...newTransaction, type: e.target.value })}
+                >
+                  <option value="expense">Expense</option>
+                  <option value="income">Income</option>
+                </select>
+              </div>
+
+              <div className='form-footer'>
+                <button className='add-btn' onClick={handleAddTransaction}>Add Transaction</button>
+                <button className='cancel-btn' onClick={() => setIsPopupOpen(false)}>Cancel</button> {/* Cancel button to close popup */}
+              </div>
+            </form>
           </div>
         </div>
       )}

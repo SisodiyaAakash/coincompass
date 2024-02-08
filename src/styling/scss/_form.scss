@@ -1,0 +1,58 @@
+body {
+  form {
+    input,
+    select {
+      height: 45px;
+
+      @media screen and (max-width: 767px) {
+        height: 40px;
+      }
+    }
+    input,
+    select,
+    textarea {
+      padding: 0 22px;
+      outline: none;
+      border-radius: 5px;
+      border-width: 1.5px;
+      border-style: solid;
+      transition: $transition;
+
+      @media screen and (max-width: 767px) {
+        padding: 0 20px;
+      }
+
+      &:hover,
+      &:focus,
+      &:focus-visible,
+      &:visited {
+        outline: none;
+        transition: $transition;
+      }
+    }
+
+    select {
+      appearance: none;
+      padding-right: 45px;
+      background-image: url("../assets/media/form-icons/expand-more.svg");
+      background-repeat: no-repeat;
+      background-position: right 22px center;
+
+      @media screen and (max-width: 767px) {
+        background-position: right 20px center;
+      }
+    }
+
+    button {
+      padding: 12px 16px;
+      border-width: 1.5px;
+      border-style: solid;
+      transition: $transition;
+      cursor: pointer;
+
+      &:hover {
+        transition: $transition;
+      }
+    }
+  }
+}

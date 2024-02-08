@@ -2,6 +2,10 @@
 @import './scss/mixin';
 @import './scss/typography';
 @import './scss/general';
-@import './scss/header';
+@import './scss/form';
 @import './scss/coin-comp'; 
-@import './scss/footer'; 
+
+/* Comps */
+@import './scss/comps/header';
+@import './scss/comps/footer'; 
+@import './scss/comps/dashboard'; 
