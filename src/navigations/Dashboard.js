@@ -75,6 +75,31 @@ const Dashboard = () => {
     }
   };
 
+  // Render transaction type options dynamically based on the selected category
+  const renderTransactionTypeOptions = () => {
+    if (newTransaction.category === "Transfer") {
+      return (
+        <>
+          <option value="expense">Expense</option>
+          <option value="income">Income</option>
+        </>
+      );
+    } else {
+      return <option value="expense">Expense</option>;
+    }
+  };
+
+  // Render category options
+  const renderCategoryOptions = () => {
+    return (
+      <>
+        {categoryList.map((category, index) => (
+          <option key={index} value={category.name}>{category.name}</option>
+        ))}
+      </>
+    );
+  };
+
   useEffect(() => {
     if (isPopupOpen) {
       document.body.classList.add('overflow-hidden');
@@ -152,26 +177,23 @@ const Dashboard = () => {
 
             <form className='transaction-form'>
               <div className='form-body'>
-                <select
-                  value={newTransaction.category}
-                  onChange={(e) => setNewTransaction({ ...newTransaction, category: e.target.value })}
-                >
-                  <option value="">Select Category</option>
-                  {categoryList.map((category, index) => (
-                    <option key={index} value={category.name}>{category.name}</option>
-                  ))}
-                </select>
                 <input
                   type="number"
                   value={newTransaction.amount}
                   onChange={(e) => setNewTransaction({ ...newTransaction, amount: parseFloat(e.target.value) })}
                 />
                 <select
+                  value={newTransaction.category}
+                  onChange={(e) => setNewTransaction({ ...newTransaction, category: e.target.value })}
+                >
+                  <option value="">Select Category</option>
+                  {renderCategoryOptions()}
+                </select>
+                <select
                   value={newTransaction.type}
                   onChange={(e) => setNewTransaction({ ...newTransaction, type: e.target.value })}
                 >
-                  <option value="expense">Expense</option>
-                  <option value="income">Income</option>
+                  {renderTransactionTypeOptions()}
                 </select>
               </div>
 
