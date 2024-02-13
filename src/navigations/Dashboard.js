@@ -128,12 +128,12 @@ const Dashboard = () => {
     if (newTransaction.category === "Transfer") {
       return (
         <>
-          <option value="expense">Expense</option>
-          <option value="income">Income</option>
+          <option value="expense">Debit</option>
+          <option value="income">Credit</option>
         </>
       );
     } else {
-      return <option value="expense">Expense</option>;
+      return <option value="expense">Debit</option>;
     }
   };
 
