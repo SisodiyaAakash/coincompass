@@ -2,6 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import IncomeArrow from '../assets/media/income-arrow.svg';
 import ExpenseArrow from '../assets/media/expense-arrow.svg';
+import Dexie from 'dexie';
+
+// Initialized Dexie database
+const db = new Dexie('transactionsDatabase');
+db.version(1).stores({
+  transactions: '++id, category, amount, type'
+});
 
 const Dashboard = () => {
   const [newTransaction, setNewTransaction] = useState({
@@ -15,46 +22,64 @@ const Dashboard = () => {
     {
       name: "Food",
       icon: require('../assets/media/transaction-category-icons/food-category.svg').default,
-      transaction: -5870,
+      transaction: 0, // Initialize transaction property
       color: '#FFC142'
     },
     {
       name: "Groceries",
       icon: require('../assets/media/transaction-category-icons/grocery-category.svg').default,
-      transaction: -38870,
+      transaction: 0, // Initialize transaction property
       color: '#D86EFD'
     },
     {
       name: "Shopping",
       icon: require('../assets/media/transaction-category-icons/shopping-category.svg').default,
-      transaction: -26040,
+      transaction: 0, // Initialize transaction property
       color: '#7031E7'
     },
     {
       name: "Entertainment",
       icon: require('../assets/media/transaction-category-icons/entertainment-category.svg').default,
-      transaction: -1250,
+      transaction: 0, // Initialize transaction property
       color: '#E23737'
     },
     {
       name: "Travel",
       icon: require('../assets/media/transaction-category-icons/travel-category.svg').default,
-      transaction: -12450,
+      transaction: 0, // Initialize transaction property
       color: '#04AE93'
     },
     {
       name: "Rent",
       icon: require('../assets/media/transaction-category-icons/rent-category.svg').default,
-      transaction: -8065,
+      transaction: 0, // Initialize transaction property
       color: '#1575CF'
     },
     {
       name: "Transfer",
       icon: require('../assets/media/transaction-category-icons/salary-category.svg').default,
-      transaction: 1025900,
+      transaction: 0, // Initialize transaction property
       color: '#FD956E'
     },
   ]);
+
+  // Fetch transactions from Dexie database on component mount
+  useEffect(() => {
+    db.transactions.toArray().then(transactions => {
+      // Update categoryList with transaction amounts
+      const updatedCategoryList = categoryList.map(category => {
+        const transaction = transactions.find(transaction => transaction.category === category.name);
+        return {
+          ...category,
+          transaction: transaction ? transaction.amount : 0 // Use 0 as default if transaction is undefined
+        };
+      });
+      console.log("Updated Category List:", updatedCategoryList); // Add this line for debugging
+      setCategoryList(updatedCategoryList);
+    });
+  }, []);
+
+
 
   // Calculate total income and expense
   const totalIncome = categoryList.filter(item => item.transaction > 0)
@@ -63,17 +88,40 @@ const Dashboard = () => {
     .reduce((acc, item) => acc + item.transaction, 0);
   const totalBalance = totalIncome + totalExpense;
 
+  console.log("Total Balance: "+totalBalance+" Total Income "+totalIncome+" Total Expense "+totalExpense);
+
   const handleAddTransaction = () => {
-    const updatedCategoryList = [...categoryList];
-    const index = updatedCategoryList.findIndex(cat => cat.name === newTransaction.category);
-    if (index !== -1) {
-      updatedCategoryList[index].transaction += (newTransaction.type === 'income' ?
-        newTransaction.amount : -newTransaction.amount);
-      setCategoryList(updatedCategoryList);
-      setNewTransaction({ ...newTransaction, amount: 0 });
-      setIsPopupOpen(false);
-    }
+    const { category, amount, type } = newTransaction;
+  
+    // Insert transaction into Dexie database
+    db.transactions
+      .add({
+        category,
+        amount: type === 'income' ? amount : -amount,
+        type
+      })
+      .then(() => {
+        // Update categoryList with new transaction
+        db.transactions.toArray().then(transactions => {
+          const updatedCategoryList = categoryList.map(cat => {
+            if (cat.name === category || cat.name === "Transfer") {
+              const categoryTransactions = transactions.filter(transaction => transaction.category === cat.name);
+              const categoryTransactionAmount = categoryTransactions.reduce((acc, transaction) => acc + transaction.amount, 0);
+              return {
+                ...cat,
+                transaction: categoryTransactionAmount
+              };
+            }
+            return cat;
+          });
+          setCategoryList(updatedCategoryList);
+          setNewTransaction({ ...newTransaction, amount: 0 });
+          setIsPopupOpen(false);
+        });
+      })
+      .catch(error => console.error('Error adding transaction: ', error));
   };
+
 
   // Render transaction type options dynamically based on the selected category
   const renderTransactionTypeOptions = () => {
@@ -198,8 +246,8 @@ const Dashboard = () => {
               </div>
 
               <div className='form-footer'>
-                <button className='add-btn' onClick={handleAddTransaction}>Add Transaction</button>
-                <button className='cancel-btn' onClick={() => setIsPopupOpen(false)}>Cancel</button> {/* Cancel button to close popup */}
+                <button type='button' className='add-btn' onClick={handleAddTransaction}>Add Transaction</button>
+                <button type='button' className='cancel-btn' onClick={() => setIsPopupOpen(false)}>Cancel</button> {/* Cancel button to close popup */}
               </div>
             </form>
           </div>
