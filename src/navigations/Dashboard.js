@@ -14,8 +14,9 @@ const Dashboard = () => {
   const [newTransaction, setNewTransaction] = useState({
     category: '',
     amount: 0,
-    type: 'expense'
+    type: 'expense' // Default type is expense
   });
+
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const [categoryList, setCategoryList] = useState([
@@ -63,79 +64,69 @@ const Dashboard = () => {
     },
   ]);
 
-  // Fetch transactions from Dexie database on component mount
   useEffect(() => {
-    db.transactions.toArray().then(transactions => {
-      // Update categoryList with transaction amounts
-      const updatedCategoryList = categoryList.map(category => {
-        const transaction = transactions.find(transaction => transaction.category === category.name);
-        return {
-          ...category,
-          transaction: transaction ? transaction.amount : 0 // Use 0 as default if transaction is undefined
-        };
-      });
-      console.log("Updated Category List:", updatedCategoryList); // Add this line for debugging
-      setCategoryList(updatedCategoryList);
-    });
+    fetchTransactions(); // Fetch transactions on component mount
   }, []);
 
+  useEffect(() => {
+    // Update transaction type based on the selected category
+    if (newTransaction.category === "Transfer") {
+      setNewTransaction(prevState => ({ ...prevState, type: 'expense' }));
+    } else {
+      setNewTransaction(prevState => ({ ...prevState, type: 'expense' }));
+    }
+  }, [newTransaction.category]);
 
+  const fetchTransactions = () => {
+    db.transactions.toArray().then(transactions => {
+      const updatedCategoryList = categoryList.map(category => {
+        const categoryTransactions = transactions.filter(transaction => transaction.category === category.name);
+        const categoryTransactionAmount = categoryTransactions.reduce((acc, transaction) => acc + transaction.amount, 0);
+        return {
+          ...category,
+          transaction: categoryTransactionAmount
+        };
+      });
+      setCategoryList(updatedCategoryList);
+    });
+  };
 
-  // Calculate total income and expense
   const totalIncome = categoryList.filter(item => item.transaction > 0)
     .reduce((acc, item) => acc + item.transaction, 0);
   const totalExpense = categoryList.filter(item => item.transaction < 0)
     .reduce((acc, item) => acc + item.transaction, 0);
   const totalBalance = totalIncome + totalExpense;
 
-  console.log("Total Balance: "+totalBalance+" Total Income "+totalIncome+" Total Expense "+totalExpense);
-
   const handleAddTransaction = () => {
     const { category, amount, type } = newTransaction;
-  
-    // Insert transaction into Dexie database
     db.transactions
       .add({
         category,
-        amount: type === 'income' ? amount : -amount,
+        amount: type === 'income' ? amount : -amount, // Adjust amount based on type
         type
       })
       .then(() => {
-        // Update categoryList with new transaction
-        db.transactions.toArray().then(transactions => {
-          const updatedCategoryList = categoryList.map(cat => {
-            if (cat.name === category || cat.name === "Transfer") {
-              const categoryTransactions = transactions.filter(transaction => transaction.category === cat.name);
-              const categoryTransactionAmount = categoryTransactions.reduce((acc, transaction) => acc + transaction.amount, 0);
-              return {
-                ...cat,
-                transaction: categoryTransactionAmount
-              };
-            }
-            return cat;
-          });
-          setCategoryList(updatedCategoryList);
-          setNewTransaction({ ...newTransaction, amount: 0 });
-          setIsPopupOpen(false);
-        });
+        fetchTransactions(); // Fetch transactions after adding new transaction
+        setNewTransaction({ ...newTransaction, amount: 0 }); // Reset form
+        setIsPopupOpen(false); // Close popup
       })
       .catch(error => console.error('Error adding transaction: ', error));
   };
-
 
   // Render transaction type options dynamically based on the selected category
   const renderTransactionTypeOptions = () => {
     if (newTransaction.category === "Transfer") {
       return (
         <>
-          <option value="expense">Debit</option>
-          <option value="income">Credit</option>
+          <option value="expense">Expense</option>
+          <option value="income">Income</option>
         </>
       );
     } else {
-      return <option value="expense">Debit</option>;
+      return <option value="expense">Expense</option>;
     }
   };
+
 
   // Render category options
   const renderCategoryOptions = () => {
@@ -147,18 +138,6 @@ const Dashboard = () => {
       </>
     );
   };
-
-  useEffect(() => {
-    if (isPopupOpen) {
-      document.body.classList.add('overflow-hidden');
-    } else {
-      document.body.classList.remove('overflow-hidden');
-    }
-
-    return () => {
-      document.body.classList.remove('overflow-hidden');
-    };
-  }, [isPopupOpen]);
 
   return (
     <div className='coin-compass-wrap dashboard-wrap'>
@@ -216,8 +195,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-
-      {/* Popup for the Transaction add form */}
+      {/* Popup content */}
       {isPopupOpen && (
         <div className="transaction-popup-wrap">
           <div className="popup-content">
@@ -247,7 +225,7 @@ const Dashboard = () => {
 
               <div className='form-footer'>
                 <button type='button' className='add-btn' onClick={handleAddTransaction}>Add Transaction</button>
-                <button type='button' className='cancel-btn' onClick={() => setIsPopupOpen(false)}>Cancel</button> {/* Cancel button to close popup */}
+                <button type='button' className='cancel-btn' onClick={() => setIsPopupOpen(false)}>Cancel</button>
               </div>
             </form>
           </div>
