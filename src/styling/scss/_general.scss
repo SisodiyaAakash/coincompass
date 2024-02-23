@@ -93,7 +93,43 @@ body {
 }
 
 
-// Layout based classes
+/* Layout based classes */
 .overflow-hidden {
   overflow: hidden;
+}
+body {
+  .px-10 {
+    padding: 0 10px;
+  }
+  .px-20 {
+    padding: 0 20px;
+  }
+  .px-50 {
+    padding: 0 50px;
+  }
+  .py-10 {
+    padding: 10px 0;
+  }
+  .py-20 {
+    padding: 20px 0;
+  }
+  .py-50 {
+    padding: 50px 0;
+  }
+  .p-10 {
+    padding: 10px;
+  }
+  .p-20 {
+    padding: 20px;
+  }
+  .p-50 {
+    padding: 50px;
+  }
+}
+
+/* Content based classes */
+body {
+  .text-center {
+    text-align: center;
+  }
 }

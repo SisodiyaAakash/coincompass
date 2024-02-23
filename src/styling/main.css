@@ -310,8 +310,42 @@ body .bold {
   font-weight: 700;
 }
 
+/* Layout based classes */
 .overflow-hidden {
   overflow: hidden;
+}
+
+body .px-10 {
+  padding: 0 10px;
+}
+body .px-20 {
+  padding: 0 20px;
+}
+body .px-50 {
+  padding: 0 50px;
+}
+body .py-10 {
+  padding: 10px 0;
+}
+body .py-20 {
+  padding: 20px 0;
+}
+body .py-50 {
+  padding: 50px 0;
+}
+body .p-10 {
+  padding: 10px;
+}
+body .p-20 {
+  padding: 20px;
+}
+body .p-50 {
+  padding: 50px;
+}
+
+/* Content based classes */
+body .text-center {
+  text-align: center;
 }
 
 body form input,

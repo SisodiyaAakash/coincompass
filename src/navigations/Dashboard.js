@@ -58,7 +58,7 @@ const Dashboard = () => {
     },
     {
       name: "Transfer",
-      icon: require('../assets/media/transaction-category-icons/salary-category.svg').default,
+      icon: require('../assets/media/transaction-category-icons/transfer-category.svg').default,
       transaction: 0, // Initialize transaction property
       color: '#FD956E'
     },
@@ -67,6 +67,18 @@ const Dashboard = () => {
   useEffect(() => {
     fetchTransactions(); // Fetch transactions on component mount
   }, []);
+
+  useEffect(() => {
+    if (isPopupOpen) {
+      document.body.classList.add('overflow-hidden');
+    } else {
+      document.body.classList.remove('overflow-hidden');
+    }
+  
+    return () => {
+      document.body.classList.remove('overflow-hidden');
+    };
+  }, [isPopupOpen]);
 
   useEffect(() => {
     // Update transaction type based on the selected category
@@ -98,16 +110,17 @@ const Dashboard = () => {
   const totalBalance = totalIncome + totalExpense;
 
   const handleAddTransaction = () => {
-    const { category, amount, type } = newTransaction;
+    const { category, amount, type, description } = newTransaction;
     db.transactions
       .add({
         category,
         amount: type === 'income' ? amount : -amount, // Adjust amount based on type
-        type
+        type,
+        description
       })
       .then(() => {
         fetchTransactions(); // Fetch transactions after adding new transaction
-        setNewTransaction({ ...newTransaction, amount: 0 }); // Reset form
+        setNewTransaction({ ...newTransaction, amount: 0, description: '' }); // Reset form
         setIsPopupOpen(false); // Close popup
       })
       .catch(error => console.error('Error adding transaction: ', error));
@@ -208,6 +221,7 @@ const Dashboard = () => {
                   value={newTransaction.amount}
                   onChange={(e) => setNewTransaction({ ...newTransaction, amount: parseFloat(e.target.value) })}
                 />
+
                 <select
                   value={newTransaction.category}
                   onChange={(e) => setNewTransaction({ ...newTransaction, category: e.target.value })}
@@ -215,12 +229,20 @@ const Dashboard = () => {
                   <option value="">Select Category</option>
                   {renderCategoryOptions()}
                 </select>
+
                 <select
                   value={newTransaction.type}
                   onChange={(e) => setNewTransaction({ ...newTransaction, type: e.target.value })}
                 >
                   {renderTransactionTypeOptions()}
                 </select>
+
+                <input
+                  type="text"
+                  placeholder="Description"
+                  value={newTransaction.description}
+                  onChange={(e) => setNewTransaction({ ...newTransaction, description: e.target.value })}
+                />
               </div>
 
               <div className='form-footer'>
