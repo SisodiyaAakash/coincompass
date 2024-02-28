@@ -3,9 +3,12 @@
 @import './scss/typography';
 @import './scss/general';
 @import './scss/form';
-@import './scss/coin-comp'; 
+@import './scss/coin-comp';
 
 /* Comps */
 @import './scss/comps/header';
-@import './scss/comps/footer'; 
-@import './scss/comps/dashboard'; 
+@import './scss/comps/footer';
+
+/* Navigations */
+@import './scss/navigations/dashboard';
+@import './scss/navigations/transaction';

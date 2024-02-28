@@ -1,0 +1,45 @@
+body {
+   .transaction-nav {
+      .nav-title {
+         text-align: center;
+         padding: 35px 0;
+      }
+
+      ul.transactions {
+         @include flex-column;
+         gap: 20px;
+
+         li {
+            padding: 10px 20px;
+            background-color: rgba($grey, 0.75);
+            border-radius: $radius;
+            
+            @include flex-center;
+            gap: 15px;
+
+            .transaction-icon {
+               width: 40px;
+               height: 40px;
+               border-radius: $radius-rounded;
+               background-color: red;
+
+               @include flex-center;
+               justify-content: center;
+            }
+            .transaction-content {
+               flex-grow: 1;
+            }
+            .transaction-value {
+               h6 {
+                  &.income {
+                     color: $green;
+                  }
+                  &.expense {
+                     color: $red;
+                  }
+               }
+            }
+         }
+      }
+   }
+}

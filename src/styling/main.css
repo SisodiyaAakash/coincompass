@@ -172,6 +172,18 @@ body h5, body .dashboard-wrap .overview-dashboard .sub-title {
     letter-spacing: 0.18px;
   }
 }
+body h6 {
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.22px;
+}
+@media screen and (max-width: 767px) {
+  body h6 {
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: 0.18px;
+  }
+}
 body p {
   font-size: 16px;
   font-weight: 400;
@@ -538,6 +550,7 @@ body footer.footer .footer-inner-wrap .social-icon img {
   height: 20px;
 }
 
+/* Navigations */
 body .dashboard-wrap .overview-dashboard {
   width: 700px;
   max-width: 100%;
@@ -784,4 +797,40 @@ body .dashboard-wrap .transaction-popup-wrap .popup-content .transaction-form .f
 body .dashboard-wrap .transaction-popup-wrap .popup-content .transaction-form .form-footer button.cancel-btn:hover {
   background-color: #D32F2F;
   transform: translateY(-2px);
+}
+
+body .transaction-nav .nav-title {
+  text-align: center;
+  padding: 35px 0;
+}
+body .transaction-nav ul.transactions {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+body .transaction-nav ul.transactions li {
+  padding: 10px 20px;
+  background-color: rgba(245, 245, 245, 0.75);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+body .transaction-nav ul.transactions li .transaction-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body .transaction-nav ul.transactions li .transaction-content {
+  flex-grow: 1;
+}
+body .transaction-nav ul.transactions li .transaction-value h6.income {
+  color: #27AE60;
+}
+body .transaction-nav ul.transactions li .transaction-value h6.expense {
+  color: #E53935;
 }/*# sourceMappingURL=main.css.map */

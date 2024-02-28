@@ -6,7 +6,7 @@ import Dexie from 'dexie';
 
 // Initialized Dexie database
 const db = new Dexie('transactionsDatabase');
-db.version(1).stores({
+db.version(10).stores({
   transactions: '++id, category, amount, type'
 });
 

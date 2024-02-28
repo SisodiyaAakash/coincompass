@@ -10,11 +10,11 @@ import TransferIcon from '../assets/media/transaction-category-icons/transfer-ca
 import Dexie from 'dexie';
 
 const db = new Dexie('transactionsDatabase');
-db.version(1).stores({
+db.version(10).stores({
   transactions: '++id, category, amount, type, description'
 });
 
-const Transactions = () => {
+const Transactions = ({ categoryColors }) => {
   const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
@@ -50,20 +50,27 @@ const Transactions = () => {
 
   return (
     <div className='transaction-nav component-wrap'>
-      <h1>All Transactions</h1>
-      <ul>
-        {transactions.map(transaction => (
-          <li key={transaction.id} className={transaction.type}>
-            <div>
-              <img src={getCategoryIcon(transaction.category)} alt={transaction.category} />
-            </div>
-            <div>
-              <p>Amount: {transaction.amount}</p>
-              <p>Description: {transaction.description}</p>
-            </div>
-          </li>
-        ))}
-      </ul>
+      <h3 className='nav-title'>Recent Transactions</h3>
+
+      {transactions.length > 0 ? (
+        <ul className='transactions'>
+          {transactions.map(transaction => (
+            <li key={transaction.id}>
+              <div className='transaction-icon'>
+                <img src={getCategoryIcon(transaction.category)} alt={transaction.category} />
+              </div>
+              <div className='transaction-content'>
+                <p>{transaction.description}</p>
+              </div>
+              <div className='transaction-value'>
+                <h6 className={transaction.type}>{transaction.amount}</h6>
+              </div>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No transactions available</p>
+      )}
     </div>
   );
 };
