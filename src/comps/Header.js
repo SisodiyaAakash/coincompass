@@ -16,12 +16,12 @@ const Header = () => {
                   <li className={location.pathname === "/transactions" ? "active" : ""}>
                      <Link to="/transactions">Transactions</Link>
                   </li>
-                  <li className={location.pathname === "/categories" ? "active" : ""}>
+                  {/* <li className={location.pathname === "/categories" ? "active" : ""}>
                      <Link to="/categories">Categories</Link>
                   </li>
                   <li className={location.pathname === "/goals" ? "active" : ""}>
                      <Link to="/goals">Goals</Link>
-                  </li>
+                  </li> */}
                </ul>
             </div>
 

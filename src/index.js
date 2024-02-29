@@ -7,8 +7,8 @@ import Footer from './comps/Footer';
 
 import Dashboard from './navigations/Dashboard';
 import Transactions from './navigations/Transactions';
-import Categories from './navigations/Categories';
-import Goals from './navigations/Goals';
+// import Categories from './navigations/Categories';
+// import Goals from './navigations/Goals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -18,8 +18,8 @@ root.render(
       <Switch>
         <Route path="/" exact component={Dashboard} />
         <Route path="/transactions" component={Transactions} />
-        <Route path="/categories" component={Categories} />
-        <Route path="/goals" component={Goals} />
+        {/* <Route path="/categories" component={Categories} />
+        <Route path="/goals" component={Goals} /> */}
       </Switch>
       <Footer />
     </Router>
